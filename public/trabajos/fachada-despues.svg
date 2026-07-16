@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" fill="none">
+  <defs>
+    <linearGradient id="fd-cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9c1b2" />
+      <stop offset="0.6" stop-color="#e3ded4" />
+      <stop offset="1" stop-color="#f1eee8" />
+    </linearGradient>
+    <radialGradient id="fd-sol" cx="0.78" cy="0.12" r="0.6">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.26" />
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="fd-muro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#faf9f7" />
+      <stop offset="0.55" stop-color="#e7e3dc" />
+      <stop offset="1" stop-color="#d9d3c8" />
+    </linearGradient>
+    <linearGradient id="fd-vidrio" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8f8a80" />
+      <stop offset="0.5" stop-color="#a8a29b" />
+      <stop offset="1" stop-color="#7d7871" />
+    </linearGradient>
+    <linearGradient id="fd-luz" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fcd34d" />
+      <stop offset="1" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <g id="fd-ventana">
+      <rect width="110" height="130" fill="url(#fd-vidrio)" />
+      <path d="M8 122L96 8" stroke="#e7e3dc" stroke-width="9" stroke-opacity="0.5" stroke-linecap="round" />
+      <path d="M44 126L104 46" stroke="#faf9f7" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round" />
+      <path d="M0 65h110M55 0v130" stroke="#faf9f7" stroke-width="2.5" />
+      <rect x="1.5" y="1.5" width="107" height="127" stroke="#faf9f7" stroke-width="3" />
+      <rect x="-7" y="130" width="124" height="9" fill="#faf9f7" />
+      <rect x="-7" y="137" width="124" height="2" fill="#c4bdb1" />
+    </g>
+
+    <g id="fd-baranda">
+      <rect x="-12" y="0" width="134" height="7" fill="#f59e0b" />
+      <path d="M0 7v26M18 7v26M36 7v26M54 7v26M72 7v26M90 7v26M108 7v26" stroke="#faf9f7" stroke-width="3" />
+      <rect x="-12" y="31" width="134" height="5" fill="#d6d0c6" />
+    </g>
+
+    <g id="fd-matera">
+      <rect x="-4" y="0" width="42" height="24" rx="3" fill="#b45309" />
+      <path d="M17 0c-9-7-19-6-24-14 12-3 20 2 24 9 4-8 13-13 25-10-6 9-16 8-25 15z" fill="#6b7a4a" />
+    </g>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#fd-cielo)" />
+  <rect width="1200" height="800" fill="url(#fd-sol)" />
+
+  <rect y="720" width="1200" height="80" fill="#c4bdb1" />
+  <rect y="720" width="1200" height="4" fill="#faf9f7" />
+  <path d="M0 762h1200" stroke="#d6d0c6" stroke-width="2" stroke-dasharray="46 34" />
+  <rect x="470" y="724" width="260" height="76" fill="#d6d0c6" />
+
+  <rect x="120" y="90" width="960" height="630" fill="url(#fd-muro)" />
+
+  <rect x="100" y="64" width="1000" height="28" fill="#faf9f7" />
+  <rect x="100" y="86" width="1000" height="6" fill="#f59e0b" />
+
+  <rect x="120" y="290" width="960" height="10" fill="#faf9f7" />
+  <rect x="120" y="460" width="960" height="10" fill="#faf9f7" />
+
+  <rect x="120" y="660" width="960" height="60" fill="#d6d0c6" />
+  <rect x="120" y="660" width="960" height="4" fill="#faf9f7" />
+
+  <use href="#fd-ventana" x="175" y="145" />
+  <use href="#fd-ventana" x="360" y="145" />
+  <use href="#fd-ventana" x="545" y="145" />
+  <use href="#fd-ventana" x="730" y="145" />
+  <use href="#fd-ventana" x="915" y="145" />
+
+  <use href="#fd-ventana" x="175" y="315" />
+  <use href="#fd-ventana" x="360" y="315" />
+  <use href="#fd-ventana" x="545" y="315" />
+  <use href="#fd-ventana" x="730" y="315" />
+  <use href="#fd-ventana" x="915" y="315" />
+
+  <use href="#fd-ventana" x="175" y="485" />
+  <use href="#fd-ventana" x="360" y="485" />
+  <use href="#fd-ventana" x="730" y="485" />
+  <use href="#fd-ventana" x="915" y="485" />
+
+  <g opacity="0.55">
+    <rect x="360" y="145" width="110" height="130" fill="url(#fd-luz)" />
+    <rect x="915" y="315" width="110" height="130" fill="url(#fd-luz)" />
+    <rect x="175" y="485" width="110" height="130" fill="url(#fd-luz)" />
+  </g>
+
+  <use href="#fd-baranda" x="175" y="424" />
+  <use href="#fd-baranda" x="360" y="424" />
+  <use href="#fd-baranda" x="545" y="424" />
+  <use href="#fd-baranda" x="730" y="424" />
+  <use href="#fd-baranda" x="915" y="424" />
+
+  <use href="#fd-matera" x="196" y="400" />
+  <use href="#fd-matera" x="751" y="400" />
+  <use href="#fd-matera" x="1006" y="400" />
+
+  <rect x="525" y="500" width="150" height="160" fill="#7d7871" />
+  <path d="M540 650L660 512" stroke="#e7e3dc" stroke-width="10" stroke-opacity="0.45" stroke-linecap="round" />
+  <rect x="526.5" y="501.5" width="147" height="157" stroke="#faf9f7" stroke-width="3" />
+  <path d="M600 500v160" stroke="#faf9f7" stroke-width="3" />
+  <rect x="515" y="486" width="170" height="14" fill="#faf9f7" />
+  <rect x="509" y="470" width="182" height="10" rx="3" fill="#f59e0b" />
+
+  <circle cx="586" cy="580" r="4" fill="#f59e0b" />
+  <circle cx="614" cy="580" r="4" fill="#f59e0b" />
+
+  <rect x="120" y="90" width="960" height="630" fill="#faf9f7" opacity="0.06" />
+</svg>

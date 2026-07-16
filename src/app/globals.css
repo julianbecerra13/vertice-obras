@@ -1,26 +1,305 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Sistema de diseno de Vertice Obras, con tema oscuro (principal) y claro.
+   -------------------------------------------------------------------------
+   Como funciona el cambio de tema:
+
+   @theme inline hace que las utilidades de Tailwind (bg-ink-950, text-bone-50)
+   apunten a una variable CSS en vez de incrustar el color. Al cambiar el valor
+   de esa variable cambia todo el sitio sin tocar un solo componente.
+
+   DEUDA CONOCIDA: en el tema claro la escala se invierte, asi que ink-950
+   (pensado como "el fondo mas oscuro") pasa a ser el fondo mas claro. Los
+   nombres mienten un poco en claro. Se acepto a proposito para no reescribir
+   los doce componentes; si algun dia se renombra, hacerlo de golpe.
+
+   El tema oscuro es el principal: es el que define la identidad de la marca. */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink-950: var(--ink-950);
+  --color-ink-900: var(--ink-900);
+  --color-ink-850: var(--ink-850);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-ink-600: var(--ink-600);
+  --color-ink-500: var(--ink-500);
+
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+
+  --color-bone-50: var(--bone-50);
+  --color-bone-100: var(--bone-100);
+  --color-bone-200: var(--bone-200);
+  --color-bone-300: var(--bone-300);
+  --color-bone-400: var(--bone-400);
+  --color-bone-500: var(--bone-500);
+
+  /* Bordes y rellenos translucidos. Antes iban incrustados como white/10, que
+     en tema claro seria blanco sobre blanco: invisible. */
+  --color-linea: var(--linea);
+  --color-linea-media: var(--linea-media);
+  --color-linea-fuerte: var(--linea-fuerte);
+  --color-velo-sutil: var(--velo-sutil);
+  --color-velo: var(--velo);
+  --color-velo-fuerte: var(--velo-fuerte);
+
+  /* Siluetas de edificio del hero. Token propio porque necesitan un contraste
+     distinto al de las superficies en cada tema. */
+  --color-silueta: var(--silueta);
+
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 2.5s ease-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --- Tema oscuro (principal) ------------------------------------------- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Negros calidos: llevan una pizca de rojo. El negro puro se ve plano. */
+  --ink-950: #08070a;
+  --ink-900: #0c0b0f;
+  --ink-850: #121016;
+  --ink-800: #17151d;
+  --ink-700: #211e29;
+  --ink-600: #2e2a38;
+  --ink-500: #453f52;
+
+  /* Ambar de obra: evoca el casco y la senalizacion. */
+  --brand-300: #fcd34d;
+  --brand-400: #fbbf24;
+  --brand-500: #f59e0b;
+  --brand-600: #d97706;
+  --brand-700: #b45309;
+
+  --bone-50: #faf9f7;
+  --bone-100: #f2f0ec;
+  --bone-200: #e7e3dc;
+  --bone-300: #cfcabf;
+  --bone-400: #a8a29b;
+  --bone-500: #7d7871;
+
+  --linea: rgb(255 255 255 / 0.09);
+  --linea-media: rgb(255 255 255 / 0.16);
+  --linea-fuerte: rgb(255 255 255 / 0.26);
+  --velo-sutil: rgb(255 255 255 / 0.02);
+  --velo: rgb(255 255 255 / 0.04);
+  --velo-fuerte: rgb(255 255 255 / 0.08);
+
+  --sombra-marca:
+    0 0 0 1px rgb(245 158 11 / 0.2), 0 8px 30px -6px rgb(245 158 11 / 0.35);
+  --opacidad-grano: 0.035;
+  --mezcla-grano: overlay;
+  --trazo-plano: rgb(255 255 255 / 0.055);
+  --trazo-plano-fino: rgb(255 255 255 / 0.025);
+  --silueta: #17151d;
+  --halo-marca: rgb(245 158 11 / 0.12);
+  --halo-marca-suave: rgb(217 119 6 / 0.1);
+}
+
+/* --- Tema claro --------------------------------------------------------- */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* Escala invertida: el "mas oscuro" pasa a ser el fondo mas claro.
+     Blancos calidos, no blanco puro: el blanco puro cansa la vista. */
+  --ink-950: #fdfcfa;
+  --ink-900: #f5f3ef;
+  --ink-850: #ffffff;
+  --ink-800: #efece6;
+  --ink-700: #e4e0d8;
+  --ink-600: #d3cec3;
+  --ink-500: #b5afa3;
+
+  /* El ambar brillante sobre blanco no tiene contraste suficiente para texto
+     (queda en ~2:1). En claro usamos la version tostada, que llega a ~5:1. */
+  --brand-300: #d97706;
+  --brand-400: #b45309;
+  --brand-500: #b45309;
+  --brand-600: #92400e;
+  --brand-700: #7c2d12;
+
+  --bone-50: #14120f;
+  --bone-100: #201d19;
+  --bone-200: #35302a;
+  --bone-300: #4d473f;
+  --bone-400: #6b655c;
+  --bone-500: #8a8378;
+
+  --linea: rgb(20 18 15 / 0.10);
+  --linea-media: rgb(20 18 15 / 0.18);
+  --linea-fuerte: rgb(20 18 15 / 0.3);
+  --velo-sutil: rgb(20 18 15 / 0.015);
+  --velo: rgb(20 18 15 / 0.035);
+  --velo-fuerte: rgb(20 18 15 / 0.07);
+
+  --sombra-marca:
+    0 0 0 1px rgb(180 83 9 / 0.25), 0 8px 30px -8px rgb(180 83 9 / 0.3);
+  --opacidad-grano: 0.05;
+  --mezcla-grano: multiply;
+  --trazo-plano: rgb(20 18 15 / 0.06);
+  --trazo-plano-fino: rgb(20 18 15 / 0.03);
+  --silueta: #e3ded3;
+  /* Halos mas tenues en claro: el ambar sobre blanco se ensucia rapido y pasa
+     de "acento calido" a "mancha amarilla". */
+  --halo-marca: rgb(217 119 6 / 0.08);
+  --halo-marca-suave: rgb(180 83 9 / 0.06);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ink-950);
+  color: var(--bone-50);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.4s var(--ease-out-expo),
+    color 0.4s var(--ease-out-expo);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  background-color: var(--ink-950);
+}
+
+::selection {
+  background-color: var(--brand-500);
+  color: var(--ink-950);
+}
+
+/* Accesibilidad: hay personas a las que el movimiento les causa mareo.
+   Si el sistema pide menos animacion, la apagamos casi por completo. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  /* Grano de pelicula: la textura que separa un fondo plano de uno "caro".
+     En claro cambia a multiply, porque overlay sobre blanco no se ve. */
+  .textura-grano {
+    position: relative;
+  }
+
+  .textura-grano::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--opacidad-grano);
+    mix-blend-mode: var(--mezcla-grano);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .texto-degradado {
+    background-image: linear-gradient(180deg, var(--bone-50) 0%, var(--bone-400) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .texto-marca {
+    background-image: linear-gradient(
+      100deg,
+      var(--brand-400) 0%,
+      var(--brand-600) 50%,
+      var(--brand-300) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Borde de 1px hecho con degradado: no se puede con border normal. */
+  .borde-degradado {
+    position: relative;
+  }
+
+  .borde-degradado::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      var(--linea-media),
+      var(--velo-sutil) 40%,
+      color-mix(in srgb, var(--brand-500) 28%, transparent)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .sombra-marca {
+    box-shadow: var(--sombra-marca);
+  }
 }
