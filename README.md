@@ -6,13 +6,14 @@ gestionar las solicitudes que llegan por el formulario de contacto.
 
 ## Acceso al panel
 
-| | |
-|---|---|
-| URL | `/admin` |
-| Usuario | `admin` |
-| Contraseña | `Vertice2026*Obras` |
+El panel está en `/admin`. El usuario y la contraseña salen de las variables de
+entorno `ADMIN_USER` y `ADMIN_PASSWORD_HASH`, que viven en `.env.local` (fuera de
+git) y en las variables del proyecto en Vercel.
 
-Para cambiar las credenciales:
+> Las credenciales **no se escriben aquí a propósito**: este archivo se sube al
+> repositorio, y una contraseña en el README queda indexada para siempre.
+
+Para generar unas nuevas:
 
 ```bash
 npm run credenciales "NuevaContrasena"
