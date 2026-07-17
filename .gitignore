@@ -43,3 +43,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+
+# documentos con credenciales: nunca al repositorio
+*.pdf
